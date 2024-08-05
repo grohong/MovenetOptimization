@@ -1,0 +1,83 @@
+*.pyc
+.DS_Store
+.cxx/
+.logs/
+.gradle/
+.idea/
+.ipynb_checkpoints/
+.vscode/
+build*/
+cmake-build-*/
+
+# Xcode
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.xcuserstate
+*.xcscmblueprint
+profile
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xccheckout
+
+# AppCode
+.idea/
+
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+Carthage/Build
+
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#
+Pods/
+
+# Swift Package Manager
+#
+# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
+# Packages/
+# Package.pins
+# Package.resolved
+.build/
+
+### Xcode Patch ###
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+.vs/
+
+# docs
+.docusaurus
+node_modules
+
+# Android
+example/android/app/src/main/assets/models
+example/android/benchmark/src/main/assets/models
+
+# python
+platforms/python/build
+platforms/python/dist
+platforms/python/wheelhouse
+platforms/python/majorVersion
+platforms/python/VERSION
+platforms/python/**/__pycache__
+platforms/python/.pytest_cache
+**/*.egg-info
