@@ -17,9 +17,9 @@ import AVFoundation
 import UIKit
 import TensorFlowLite
 
-public final class RanplEngine {
+public final class MovenetEngine {
 
-    public static let shared = RanplEngine()
+    public static let shared = MovenetEngine()
 
     public typealias DetectingResult = Result<Person, Error>
 
@@ -35,7 +35,7 @@ public final class RanplEngine {
         completion: @escaping (Bool) -> Void
     ) {
         queue.async { [weak self] in
-            let moduleBundle = Bundle(for: RanplEngine.self)
+            let moduleBundle = Bundle(for: MovenetEngine.self)
             guard let self = self,
                   let model = moduleBundle.path(forResource: "movenet_singlepose_thunder_3", ofType: "tflite") else {
                 completion(false)
@@ -112,8 +112,8 @@ public final class RanplEngine {
     }
 }
 
-extension RanplEngine {
-    
+extension MovenetEngine {
+
     private func preprocess(with sampleBuffer: CMSampleBuffer) throws -> Data {
         guard let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             throw PoseEstimationError.preprocessingFailed

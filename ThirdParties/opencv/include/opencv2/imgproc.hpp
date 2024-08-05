@@ -2400,8 +2400,7 @@ with #invertAffineTransform and then put in the formula above instead of M. The 
 operate in-place.
 
 @param src input image.
-@param dst output image that has the size dsize and the same type as src .
-@param M \f$2\times 3\f$ transformation matrix.
+@param dst output image that has the size dsize and the same type as src ..
 @param dsize size of the output image.
 @param flags combination of interpolation methods (see #InterpolationFlags) and the optional
 flag #WARP_INVERSE_MAP that means that M is the inverse transformation (
@@ -2435,7 +2434,6 @@ and then put in the formula above instead of M. The function cannot operate in-p
 
 @param src input image.
 @param dst output image that has the size dsize and the same type as src .
-@param M \f$3\times 3\f$ transformation matrix.
 @param dsize size of the output image.
 @param flags combination of interpolation methods (#INTER_LINEAR or #INTER_NEAREST) and the
 optional flag #WARP_INVERSE_MAP, that sets M as the inverse transformation (
@@ -2635,8 +2633,6 @@ An example using the cv::linearPolar and cv::logPolar operations
 
 /** @brief Remaps an image to semilog-polar coordinates space.
 
-@deprecated This function produces same result as cv::warpPolar(src, dst, src.size(), center, maxRadius, flags+WARP_POLAR_LOG);
-
 @internal
 Transform the source image using the following transformation (See @ref polar_remaps_reference_image "Polar remaps reference image d)"):
 \f[\begin{array}{l}
@@ -2676,8 +2672,6 @@ CV_EXPORTS_W void logPolar( InputArray src, OutputArray dst,
                             Point2f center, double M, int flags );
 
 /** @brief Remaps an image to polar coordinates space.
-
-@deprecated This function produces same result as cv::warpPolar(src, dst, src.size(), center, maxRadius, flags)
 
 @internal
 Transform the source image using the following transformation (See @ref polar_remaps_reference_image "Polar remaps reference image c)"):
@@ -3698,11 +3692,6 @@ CV_EXPORTS_W void cvtColor( InputArray src, OutputArray dst, int code, int dstCn
 stored in two planes.
 
 This function only supports YUV420 to RGB conversion as of now.
-
-@param src1: 8-bit image (#CV_8U) of the Y plane.
-@param src2: image containing interleaved U/V plane.
-@param dst: output image.
-@param code: Specifies the type of conversion. It can take any of the following values:
 - #COLOR_YUV2BGR_NV12
 - #COLOR_YUV2RGB_NV12
 - #COLOR_YUV2BGRA_NV12

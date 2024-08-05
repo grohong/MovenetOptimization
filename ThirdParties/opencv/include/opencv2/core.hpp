@@ -150,7 +150,6 @@ By default the function prints information about the error to stderr,
 then it either stops if cv::setBreakOnError() had been called before or raises the exception.
 It is possible to alternate error processing by using #redirectError().
 @param exc the exception raisen.
-@deprecated drop this version
  */
 CV_EXPORTS CV_NORETURN void error(const Exception& exc);
 
@@ -3156,7 +3155,6 @@ public:
     */
     CV_WRAP void write(FileStorage& fs, const String& name) const;
 #if CV_VERSION_MAJOR < 5
-    /** @deprecated */
     void write(const Ptr<FileStorage>& fs, const String& name = String()) const;
 #endif
 

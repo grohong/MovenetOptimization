@@ -512,7 +512,6 @@ public:
      @param blockIdx Index of the memory block where the file node is stored
      @param ofs Offset in bytes from the beginning of the serialized storage
 
-     @deprecated
      */
     FileNode(const FileStorage* fs, size_t blockIdx, size_t ofs);
 

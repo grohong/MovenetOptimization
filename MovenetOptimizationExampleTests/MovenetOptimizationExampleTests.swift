@@ -1,14 +1,14 @@
 //
-//  MovenetOptimizationTests.swift
-//  MovenetOptimizationTests
+//  MovenetOptimizationExampleTests.swift
+//  MovenetOptimizationExampleTests
 //
-//  Created by Hong Seong Ho on 7/19/24.
+//  Created by Hong Seong Ho on 8/6/24.
 //
 
 import XCTest
-@testable import MovenetOptimization
+@testable import MovenetOptimizationExample
 
-final class MovenetOptimizationTests: XCTestCase {
+final class MovenetOptimizationExampleTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

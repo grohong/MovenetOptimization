@@ -89,7 +89,7 @@ public:
     //! conjugation
     Complex conj() const;
 
-    _Tp re, im; //< the real and the imaginary parts
+    _Tp re, im;
 };
 
 typedef Complex<float> Complexf;
@@ -936,7 +936,6 @@ The normalized central moments \f$\texttt{Moments::nu}_{ij}\f$ are computed as:
 
 \f[\texttt{nu} _{ji}= \frac{\texttt{mu}_{ji}}{\texttt{m}_{00}^{(i+j)/2+1}} .\f]
 
-@note
 \f$\texttt{mu}_{00}=\texttt{m}_{00}\f$, \f$\texttt{nu}_{00}=1\f$
 \f$\texttt{nu}_{10}=\texttt{mu}_{10}=\texttt{mu}_{01}=\texttt{mu}_{10}=0\f$ , hence the values are not
 stored.
@@ -2025,8 +2024,7 @@ double jaccardDistance(const Rect_<_Tp>& a, const Rect_<_Tp>& b) {
 /** @brief Finds out if there is any intersection between two rectangles
  *
  * mainly useful for language bindings
- * @param rect1 First rectangle
- * @param rect2 Second rectangle
+
  * @return the area of the intersection
  */
 CV_EXPORTS_W inline double rectangleIntersectionArea(const Rect2d& a, const Rect2d& b) { return (a & b).area(); }
