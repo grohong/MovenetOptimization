@@ -31,7 +31,7 @@ public final class MovenetEngine {
 
     public func initialize(
         threadCount: Int = 2,
-        delegate: TFLDelegate = .auto,
+        delegate: TFLDelegate = .cpu,
         completion: @escaping (Bool) -> Void
     ) {
         queue.async { [weak self] in
@@ -77,8 +77,10 @@ public final class MovenetEngine {
         }
     }
 
-    public func process(with sampleBuffer: CMSampleBuffer,
-                        completion: @escaping (DetectingResult) -> Void) {
+    public func process(
+        with sampleBuffer: CMSampleBuffer,
+        completion: @escaping (DetectingResult) -> Void
+    ) {
         guard !isRunning.value else {
             completion(.failure(PoseEstimationError.modelBusy))
             return
@@ -110,6 +112,44 @@ public final class MovenetEngine {
             completion(.success(person))
         }
     }
+
+    public func process(
+        with pixelBuffer: CVPixelBuffer,
+        completion: @escaping (DetectingResult) -> Void
+    ) {
+        guard !isRunning.value else {
+            completion(.failure(PoseEstimationError.modelBusy))
+            return
+        }
+
+        queue.async { [weak self] in
+            guard let self = self else {
+                completion(.failure(PoseEstimationError.notInitialized))
+                return
+            }
+
+            self.isRunning.mutate({ $0 = true })
+            defer { self.isRunning.mutate({ $0 = false })}
+
+            do {
+                guard let imageData = self.preprocess(pixelBuffer) else {
+                    throw PoseEstimationError.preprocessingFailed
+                }
+                try self.inference(data: imageData)
+            } catch {
+                completion(.failure(error))
+                return
+            }
+
+            guard let tensor = self.outputTensor,
+                  let person = self.postprocess(modelOutput: tensor) else {
+                completion(.failure(PoseEstimationError.postProcessingFailed))
+                return
+            }
+
+            completion(.success(person))
+        }
+    }
 }
 
 extension MovenetEngine {
@@ -133,6 +173,22 @@ extension MovenetEngine {
             bytesPerRow: bytesPerRow
         )
         return result
+    }
+
+    private func preprocess(_ pixelBuffer: CVPixelBuffer) -> Data? {
+        let sourcePixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
+        assert(
+            sourcePixelFormat == kCVPixelFormatType_32BGRA
+            || sourcePixelFormat == kCVPixelFormatType_32ARGB)
+
+        guard let tensor = inputTensor else { return nil }
+        let dimensions = tensor.shape.dimensions
+        let inputWidth = dimensions[1]
+        let inputHeight = dimensions[2]
+        let modelSize = CGSize(width: inputWidth, height: inputHeight)
+        guard let thumbnail = pixelBuffer.resized(to: modelSize) else { return nil }
+        // Remove the alpha component from the image buffer to get the initialized `Data`.
+        return thumbnail.rgbData(isModelQuantized: false, imageMean: .zero, imageStd: 1)
     }
 
     private func inference(data: Data) throws {

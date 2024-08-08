@@ -8,10 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		E42AB7242C61218C004F9307 /* MovenetOptimizationExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42AB7232C61218C004F9307 /* MovenetOptimizationExampleApp.swift */; };
-		E42AB7262C61218C004F9307 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42AB7252C61218C004F9307 /* ContentView.swift */; };
 		E42AB7282C61218D004F9307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42AB7272C61218D004F9307 /* Assets.xcassets */; };
 		E42AB72B2C61218D004F9307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42AB72A2C61218D004F9307 /* Preview Assets.xcassets */; };
 		E42AB7352C61218D004F9307 /* MovenetOptimizationExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42AB7342C61218D004F9307 /* MovenetOptimizationExampleTests.swift */; };
+		E4C264AF2C6356C4006E72DF /* MovenetOptimization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D0504D2C49E52700963FA9 /* MovenetOptimization.framework */; };
+		E4C264B02C6356C4006E72DF /* MovenetOptimization.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E4D0504D2C49E52700963FA9 /* MovenetOptimization.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E4C264BA2C63586D006E72DF /* OriginMovenetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264B72C63586D006E72DF /* OriginMovenetScreen.swift */; };
+		E4C264BB2C63586D006E72DF /* MovenetOptimizationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264B82C63586D006E72DF /* MovenetOptimizationScreen.swift */; };
+		E4C264BC2C63586D006E72DF /* ContentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264B92C63586D006E72DF /* ContentScreen.swift */; };
+		E4C264C32C635887006E72DF /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264BF2C635887006E72DF /* CameraView.swift */; };
+		E4C264C52C635887006E72DF /* CameraRepresentableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264C12C635887006E72DF /* CameraRepresentableView.swift */; };
+		E4C264C72C6359FA006E72DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264C62C6359FA006E72DF /* AppDelegate.swift */; };
+		E4C264CA2C6360DB006E72DF /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264C92C6360DB006E72DF /* CGPoint+.swift */; };
+		E4C264CC2C636108006E72DF /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264CB2C636108006E72DF /* UIView+.swift */; };
+		E4C264CE2C6363E1006E72DF /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264CD2C6363E1006E72DF /* DrawingView.swift */; };
+		E4C264D02C636B58006E72DF /* CameraResoulution.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264CF2C636B58006E72DF /* CameraResoulution.swift */; };
+		E4C264D32C63D261006E72DF /* PerformanceMonitorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264D22C63D261006E72DF /* PerformanceMonitorViewModel.swift */; };
+		E4C264D82C63DE89006E72DF /* CVPixelBuffer+TFLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C264D72C63DE89006E72DF /* CVPixelBuffer+TFLite.swift */; };
 		E4D050522C49E52700963FA9 /* MovenetOptimization.docc in Sources */ = {isa = PBXBuildFile; fileRef = E4D050512C49E52700963FA9 /* MovenetOptimization.docc */; };
 		E4D050682C49E5AD00963FA9 /* MovenetOptimization.h in Headers */ = {isa = PBXBuildFile; fileRef = E4D050672C49E5AD00963FA9 /* MovenetOptimization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4D053762C49EA9200963FA9 /* TensorFlowLiteC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D0520A2C49EA9100963FA9 /* TensorFlowLiteC.xcframework */; };
@@ -37,16 +50,48 @@
 			remoteGlobalIDString = E42AB7202C61218C004F9307;
 			remoteInfo = MovenetOptimizationExample;
 		};
+		E4C264B12C6356C4006E72DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4D050442C49E52700963FA9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E4D0504C2C49E52700963FA9;
+			remoteInfo = MovenetOptimization;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E4C264B32C6356C4006E72DF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E4C264B02C6356C4006E72DF /* MovenetOptimization.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E42AB7212C61218C004F9307 /* MovenetOptimizationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovenetOptimizationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E42AB7232C61218C004F9307 /* MovenetOptimizationExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovenetOptimizationExampleApp.swift; sourceTree = "<group>"; };
-		E42AB7252C61218C004F9307 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E42AB7272C61218D004F9307 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E42AB72A2C61218D004F9307 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E42AB7302C61218D004F9307 /* MovenetOptimizationExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovenetOptimizationExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E42AB7342C61218D004F9307 /* MovenetOptimizationExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovenetOptimizationExampleTests.swift; sourceTree = "<group>"; };
+		E4C264B72C63586D006E72DF /* OriginMovenetScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OriginMovenetScreen.swift; sourceTree = "<group>"; };
+		E4C264B82C63586D006E72DF /* MovenetOptimizationScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovenetOptimizationScreen.swift; sourceTree = "<group>"; };
+		E4C264B92C63586D006E72DF /* ContentScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentScreen.swift; sourceTree = "<group>"; };
+		E4C264BF2C635887006E72DF /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		E4C264C12C635887006E72DF /* CameraRepresentableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRepresentableView.swift; sourceTree = "<group>"; };
+		E4C264C62C6359FA006E72DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E4C264C92C6360DB006E72DF /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
+		E4C264CB2C636108006E72DF /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		E4C264CD2C6363E1006E72DF /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		E4C264CF2C636B58006E72DF /* CameraResoulution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraResoulution.swift; sourceTree = "<group>"; };
+		E4C264D22C63D261006E72DF /* PerformanceMonitorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceMonitorViewModel.swift; sourceTree = "<group>"; };
+		E4C264D72C63DE89006E72DF /* CVPixelBuffer+TFLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+TFLite.swift"; sourceTree = "<group>"; };
 		E4D0504D2C49E52700963FA9 /* MovenetOptimization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovenetOptimization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4D050512C49E52700963FA9 /* MovenetOptimization.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = MovenetOptimization.docc; sourceTree = "<group>"; };
 		E4D050672C49E5AD00963FA9 /* MovenetOptimization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovenetOptimization.h; sourceTree = "<group>"; };
@@ -428,6 +473,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C264AF2C6356C4006E72DF /* MovenetOptimization.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,10 +501,11 @@
 		E42AB7222C61218C004F9307 /* MovenetOptimizationExample */ = {
 			isa = PBXGroup;
 			children = (
+				E4C264C82C6360CE006E72DF /* Extesions */,
+				E4C264B52C635852006E72DF /* Views */,
+				E4C264B42C635814006E72DF /* Resources */,
 				E42AB7232C61218C004F9307 /* MovenetOptimizationExampleApp.swift */,
-				E42AB7252C61218C004F9307 /* ContentView.swift */,
-				E42AB7272C61218D004F9307 /* Assets.xcassets */,
-				E42AB7292C61218D004F9307 /* Preview Content */,
+				E4C264C62C6359FA006E72DF /* AppDelegate.swift */,
 			);
 			path = MovenetOptimizationExample;
 			sourceTree = "<group>";
@@ -479,6 +526,70 @@
 			path = MovenetOptimizationExampleTests;
 			sourceTree = "<group>";
 		};
+		E4C264AE2C6356C4006E72DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4C264B42C635814006E72DF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E42AB7272C61218D004F9307 /* Assets.xcassets */,
+				E42AB7292C61218D004F9307 /* Preview Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E4C264B52C635852006E72DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E4C264BD2C635877006E72DF /* Camera */,
+				E4C264B62C635860006E72DF /* Screens */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E4C264B62C635860006E72DF /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E4C264B92C63586D006E72DF /* ContentScreen.swift */,
+				E4C264B72C63586D006E72DF /* OriginMovenetScreen.swift */,
+				E4C264B82C63586D006E72DF /* MovenetOptimizationScreen.swift */,
+				E4C264D22C63D261006E72DF /* PerformanceMonitorViewModel.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		E4C264BD2C635877006E72DF /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				E4C264CF2C636B58006E72DF /* CameraResoulution.swift */,
+				E4C264C12C635887006E72DF /* CameraRepresentableView.swift */,
+				E4C264BF2C635887006E72DF /* CameraView.swift */,
+				E4C264CD2C6363E1006E72DF /* DrawingView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		E4C264C82C6360CE006E72DF /* Extesions */ = {
+			isa = PBXGroup;
+			children = (
+				E4C264C92C6360DB006E72DF /* CGPoint+.swift */,
+				E4C264CB2C636108006E72DF /* UIView+.swift */,
+			);
+			path = Extesions;
+			sourceTree = "<group>";
+		};
+		E4C264D42C63DE49006E72DF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E4C264D72C63DE89006E72DF /* CVPixelBuffer+TFLite.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E4D050432C49E52700963FA9 = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +597,7 @@
 				E42AB7222C61218C004F9307 /* MovenetOptimizationExample */,
 				E42AB7332C61218D004F9307 /* MovenetOptimizationExampleTests */,
 				E4D0504E2C49E52700963FA9 /* Products */,
+				E4C264AE2C6356C4006E72DF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1372,6 +1484,7 @@
 		E4D0537D2C49EBFB00963FA9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E4C264D42C63DE49006E72DF /* Extensions */,
 				E4FD3B3E2C60D7DA00411E70 /* Utiles */,
 				E4D0537E2C49EC0C00963FA9 /* Preprocessor */,
 				E4FD3B412C60D82800411E70 /* PoseData.swift */,
@@ -1429,10 +1542,12 @@
 				E42AB71D2C61218C004F9307 /* Sources */,
 				E42AB71E2C61218C004F9307 /* Frameworks */,
 				E42AB71F2C61218C004F9307 /* Resources */,
+				E4C264B32C6356C4006E72DF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E4C264B22C6356C4006E72DF /* PBXTargetDependency */,
 			);
 			name = MovenetOptimizationExample;
 			productName = MovenetOptimizationExample;
@@ -1550,8 +1665,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E42AB7262C61218C004F9307 /* ContentView.swift in Sources */,
+				E4C264BC2C63586D006E72DF /* ContentScreen.swift in Sources */,
+				E4C264C32C635887006E72DF /* CameraView.swift in Sources */,
+				E4C264BA2C63586D006E72DF /* OriginMovenetScreen.swift in Sources */,
+				E4C264CE2C6363E1006E72DF /* DrawingView.swift in Sources */,
+				E4C264C72C6359FA006E72DF /* AppDelegate.swift in Sources */,
+				E4C264C52C635887006E72DF /* CameraRepresentableView.swift in Sources */,
+				E4C264D32C63D261006E72DF /* PerformanceMonitorViewModel.swift in Sources */,
 				E42AB7242C61218C004F9307 /* MovenetOptimizationExampleApp.swift in Sources */,
+				E4C264CC2C636108006E72DF /* UIView+.swift in Sources */,
+				E4C264CA2C6360DB006E72DF /* CGPoint+.swift in Sources */,
+				E4C264D02C636B58006E72DF /* CameraResoulution.swift in Sources */,
+				E4C264BB2C63586D006E72DF /* MovenetOptimizationScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1571,6 +1696,7 @@
 				E4D050522C49E52700963FA9 /* MovenetOptimization.docc in Sources */,
 				E4FD3B482C60D87A00411E70 /* MovenetEngine.swift in Sources */,
 				E4FD3B442C60D83C00411E70 /* ProcessError.swift in Sources */,
+				E4C264D82C63DE89006E72DF /* CVPixelBuffer+TFLite.swift in Sources */,
 				E4FD3B402C60D7EF00411E70 /* AtomicVariable.swift in Sources */,
 				E4FD3B422C60D82800411E70 /* PoseData.swift in Sources */,
 				E4FD3B462C60D84F00411E70 /* TFLDelegate.swift in Sources */,
@@ -1586,6 +1712,11 @@
 			target = E42AB7202C61218C004F9307 /* MovenetOptimizationExample */;
 			targetProxy = E42AB7312C61218D004F9307 /* PBXContainerItemProxy */;
 		};
+		E4C264B22C6356C4006E72DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E4D0504C2C49E52700963FA9 /* MovenetOptimization */;
+			targetProxy = E4C264B12C6356C4006E72DF /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1596,7 +1727,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MovenetOptimizationExample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MovenetOptimizationExample/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = Y4TX5PVNK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1605,7 +1736,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1627,7 +1758,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MovenetOptimizationExample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MovenetOptimizationExample/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = Y4TX5PVNK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1636,7 +1767,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1661,7 +1792,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y4TX5PVNK4;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = grohong.MovenetOptimizationExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1682,7 +1813,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y4TX5PVNK4;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = grohong.MovenetOptimizationExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1849,7 +1980,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1907,7 +2038,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
