@@ -77,7 +77,7 @@ public final class MovenetEngine {
         }
     }
 
-    public func process(
+    public func processWithOpenCV(
         with sampleBuffer: CMSampleBuffer,
         completion: @escaping (DetectingResult) -> Void
     ) {
@@ -114,7 +114,7 @@ public final class MovenetEngine {
     }
 
     public func process(
-        with pixelBuffer: CVPixelBuffer,
+        with sampleBuffer: CMSampleBuffer,
         completion: @escaping (DetectingResult) -> Void
     ) {
         guard !isRunning.value else {
@@ -132,7 +132,7 @@ public final class MovenetEngine {
             defer { self.isRunning.mutate({ $0 = false })}
 
             do {
-                guard let imageData = self.preprocess(pixelBuffer) else {
+                guard let imageData = self.preprocess(sampleBuffer) else {
                     throw PoseEstimationError.preprocessingFailed
                 }
                 try self.inference(data: imageData)
@@ -175,7 +175,8 @@ extension MovenetEngine {
         return result
     }
 
-    func preprocess(_ pixelBuffer: CVPixelBuffer) -> Data? {
+    func preprocess(_ sampleBuffer: CMSampleBuffer) -> Data? {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return nil }
         let sourcePixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
         assert(
             sourcePixelFormat == kCVPixelFormatType_32BGRA

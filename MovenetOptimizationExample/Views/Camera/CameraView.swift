@@ -174,7 +174,7 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFil
         let height = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
 
         if isUseOpenCVPreprocessor {
-            MovenetEngine.shared.process(with: sampleBuffer) { result in
+            MovenetEngine.shared.processWithOpenCV(with: sampleBuffer) { result in
                 switch result {
                 case .success(let person):
                     DispatchQueue.main.async { [weak self] in
@@ -185,7 +185,7 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFil
                 }
             }
         } else {
-            MovenetEngine.shared.process(with: pixelBuffer) { result in
+            MovenetEngine.shared.process(with: sampleBuffer) { result in
                 switch result {
                 case .success(let person):
                     DispatchQueue.main.async { [weak self] in

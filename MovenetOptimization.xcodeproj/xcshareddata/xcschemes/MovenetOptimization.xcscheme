@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1540"
-   version = "1.7">
+   version = "1.8">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
@@ -35,7 +35,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4C87BB12C611A15004301EF"
+               BlueprintIdentifier = "E4C3D95A2C64C60400AD7DF2"
                BuildableName = "MovenetOptimizationTests.xctest"
                BlueprintName = "MovenetOptimizationTests"
                ReferencedContainer = "container:MovenetOptimization.xcodeproj">
