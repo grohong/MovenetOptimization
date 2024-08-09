@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		766043C72C662E3D00A62C0F /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766043C62C662E3D00A62C0F /* Time.swift */; };
 		E42AB7242C61218C004F9307 /* MovenetOptimizationExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42AB7232C61218C004F9307 /* MovenetOptimizationExampleApp.swift */; };
 		E42AB7282C61218D004F9307 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42AB7272C61218D004F9307 /* Assets.xcassets */; };
 		E42AB72B2C61218D004F9307 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42AB72A2C61218D004F9307 /* Preview Assets.xcassets */; };
@@ -82,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		766043C62C662E3D00A62C0F /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		E42AB7212C61218C004F9307 /* MovenetOptimizationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovenetOptimizationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E42AB7232C61218C004F9307 /* MovenetOptimizationExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovenetOptimizationExampleApp.swift; sourceTree = "<group>"; };
 		E42AB7272C61218D004F9307 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1500,6 +1502,7 @@
 				E4FD3B432C60D83C00411E70 /* ProcessError.swift */,
 				E4FD3B452C60D84F00411E70 /* TFLDelegate.swift */,
 				E4FD3B472C60D87A00411E70 /* MovenetEngine.swift */,
+				766043C62C662E3D00A62C0F /* Time.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1704,6 +1707,7 @@
 			files = (
 				E4D053802C49EC3000963FA9 /* Preprocessor.mm in Sources */,
 				E4D050522C49E52700963FA9 /* MovenetOptimization.docc in Sources */,
+				766043C72C662E3D00A62C0F /* Time.swift in Sources */,
 				E4FD3B482C60D87A00411E70 /* MovenetEngine.swift in Sources */,
 				E4FD3B442C60D83C00411E70 /* ProcessError.swift in Sources */,
 				E4C264D82C63DE89006E72DF /* CVPixelBuffer+TFLite.swift in Sources */,

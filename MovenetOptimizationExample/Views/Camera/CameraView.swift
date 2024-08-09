@@ -21,7 +21,12 @@ public final class CameraView: UIView {
     private var frameCount = 0
     private var startTime: TimeInterval?
 
-    init(isUseOpenCVPreprocessor: Bool) {
+    private var updateTotalTime: ((String) -> Void)?
+
+    init(
+        isUseOpenCVPreprocessor: Bool,
+        updateTotalTime: ((String) -> Void)?
+    ) {
         self.isUseOpenCVPreprocessor = isUseOpenCVPreprocessor
         super.init(frame: .zero)
         addSubview(drawingView)
@@ -33,6 +38,7 @@ public final class CameraView: UIView {
             drawingView.rightAnchor.constraint(equalTo: rightAnchor),
         ])
         drawingView.backgroundColor = .clear
+        self.updateTotalTime = updateTotalTime
     }
 
     required init?(coder: NSCoder) {
@@ -174,22 +180,26 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFil
         let height = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
 
         if isUseOpenCVPreprocessor {
-            MovenetEngine.shared.processWithOpenCV(with: sampleBuffer) { result in
+            MovenetEngine.shared.processWithOpenCV(with: sampleBuffer) { times, result in
                 switch result {
                 case .success(let person):
                     DispatchQueue.main.async { [weak self] in
                         self?.drawingView.drawKeypoints(person.keyPoints, imageSize: CGSize(width: width, height: height))
+                        guard let total = times?.total else { return }
+                        self?.updateTotalTime?(String(format: "%.2fms", total * 1000))
                     }
                 case .failure:
                     return
                 }
             }
         } else {
-            MovenetEngine.shared.process(with: sampleBuffer) { result in
+            MovenetEngine.shared.process(with: sampleBuffer) { times, result in
                 switch result {
                 case .success(let person):
                     DispatchQueue.main.async { [weak self] in
                         self?.drawingView.drawKeypoints(person.keyPoints, imageSize: CGSize(width: width, height: height))
+                        guard let total = times?.total else { return }
+                        self?.updateTotalTime?(String(format: "%.2fms", total * 1000))
                     }
                 case .failure:
                     return
