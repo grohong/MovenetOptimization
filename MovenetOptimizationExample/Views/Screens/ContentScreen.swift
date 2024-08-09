@@ -14,10 +14,10 @@ struct ContentScreen: View {
     var body: some View {
         NavigationView {
             List {
-                NavigationLink(destination: OriginMovenetScreen()) {
+                NavigationLink(destination: OriginMovenetScreen(time: "")) {
                     Text("기존 Movenet 예제")
                 }
-                NavigationLink(destination: MovenetOptimizationScreen()) {
+                NavigationLink(destination: MovenetOptimizationScreen(time: "")) {
                     Text("MovenetOptimization 이용")
                 }
             }

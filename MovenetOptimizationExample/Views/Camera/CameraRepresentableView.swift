@@ -12,6 +12,7 @@ struct CameraViewRepresentable: UIViewRepresentable {
 
     typealias UIViewType = CameraView
     var isUseOpenCVPreprocessor: Bool
+    var updateTotalTime: ((String) -> Void)?
 
     class Coordinator: NSObject {
 
@@ -27,7 +28,10 @@ struct CameraViewRepresentable: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> CameraView {
-        let cameraView = CameraView(isUseOpenCVPreprocessor: isUseOpenCVPreprocessor)
+        let cameraView = CameraView(
+            isUseOpenCVPreprocessor: isUseOpenCVPreprocessor,
+            updateTotalTime: updateTotalTime
+        )
         cameraView.initialize()
         return cameraView
     }

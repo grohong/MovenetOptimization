@@ -77,77 +77,102 @@ public final class MovenetEngine {
         }
     }
 
-    public func process(
+    public func processWithOpenCV(
         with sampleBuffer: CMSampleBuffer,
-        completion: @escaping (DetectingResult) -> Void
+        completion: @escaping (Times?, DetectingResult) -> Void
     ) {
         guard !isRunning.value else {
-            completion(.failure(PoseEstimationError.modelBusy))
+            completion(nil, .failure(PoseEstimationError.modelBusy))
             return
         }
 
         queue.async { [weak self] in
             guard let self = self else {
-                completion(.failure(PoseEstimationError.notInitialized))
+                completion(nil, .failure(PoseEstimationError.notInitialized))
                 return
             }
 
             self.isRunning.mutate({ $0 = true })
             defer { self.isRunning.mutate({ $0 = false })}
 
+            var preprocessingTime: TimeInterval = 0
+            var inferenceTime: TimeInterval = 0
+
             do {
+                let preprocessingStartTime = Date()
                 let imageData = try self.preprocessWithOpenCV(with: sampleBuffer)
+                preprocessingTime = Date().timeIntervalSince(preprocessingStartTime)
+                let inferenceStartTime = Date()
                 try inference(data: imageData)
+                inferenceTime = Date().timeIntervalSince(inferenceStartTime)
             } catch {
-                completion(.failure(error))
+                completion(nil, .failure(error))
                 return
             }
 
+            let postprocessingStartTime = Date()
             guard let tensor = outputTensor,
                   let person = postprocess(modelOutput: tensor) else {
-                completion(.failure(PoseEstimationError.postProcessingFailed))
+                completion(nil, .failure(PoseEstimationError.postProcessingFailed))
                 return
             }
+            let postprocessingTime = Date().timeIntervalSince(postprocessingStartTime)
 
-            completion(.success(person))
+            completion(
+                Times(preprocessing: preprocessingTime, inference: inferenceTime, postprocessing: postprocessingTime),
+                .success(person)
+            )
         }
     }
 
     public func process(
-        with pixelBuffer: CVPixelBuffer,
-        completion: @escaping (DetectingResult) -> Void
+        with sampleBuffer: CMSampleBuffer,
+        completion: @escaping (Times?, DetectingResult) -> Void
     ) {
         guard !isRunning.value else {
-            completion(.failure(PoseEstimationError.modelBusy))
+            completion(nil, .failure(PoseEstimationError.modelBusy))
             return
         }
 
         queue.async { [weak self] in
             guard let self = self else {
-                completion(.failure(PoseEstimationError.notInitialized))
+                completion(nil, .failure(PoseEstimationError.notInitialized))
                 return
             }
 
             self.isRunning.mutate({ $0 = true })
             defer { self.isRunning.mutate({ $0 = false })}
 
+            var preprocessingTime: TimeInterval = 0
+            var inferenceTime: TimeInterval = 0
+            var postprocessingTime: TimeInterval = 0
+
             do {
-                guard let imageData = self.preprocess(pixelBuffer) else {
+                let preprocessingStartTime = Date()
+                guard let imageData = self.preprocess(with: sampleBuffer) else {
                     throw PoseEstimationError.preprocessingFailed
                 }
+                preprocessingTime = Date().timeIntervalSince(preprocessingStartTime)
+                let inferenceStartTime = Date()
                 try self.inference(data: imageData)
+                inferenceTime = Date().timeIntervalSince(inferenceStartTime)
             } catch {
-                completion(.failure(error))
+                completion(nil, .failure(error))
                 return
             }
 
+            let postprocessingStartTime = Date()
             guard let tensor = self.outputTensor,
                   let person = self.postprocess(modelOutput: tensor) else {
-                completion(.failure(PoseEstimationError.postProcessingFailed))
+                completion(nil, .failure(PoseEstimationError.postProcessingFailed))
                 return
             }
+            postprocessingTime = Date().timeIntervalSince(postprocessingStartTime)
 
-            completion(.success(person))
+            completion(
+                Times(preprocessing: preprocessingTime, inference: inferenceTime, postprocessing: postprocessingTime),
+                .success(person)
+            )
         }
     }
 }
@@ -175,7 +200,8 @@ extension MovenetEngine {
         return result
     }
 
-    func preprocess(_ pixelBuffer: CVPixelBuffer) -> Data? {
+    func preprocess(with sampleBuffer: CMSampleBuffer) -> Data? {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return nil }
         let sourcePixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
         assert(
             sourcePixelFormat == kCVPixelFormatType_32BGRA
@@ -216,6 +242,17 @@ extension MovenetEngine {
     }
 
     private func postprocess(modelOutput: Tensor) -> Person? {
+        let preprocessingStartTime: Date
+        let inferenceStartTime: Date
+        let postprocessingStartTime: Date
+
+        let preprocessingTime: TimeInterval
+        let inferenceTime: TimeInterval
+        let postprocessingTime: TimeInterval
+
+        preprocessingStartTime = Date()
+        preprocessingTime = Date().timeIntervalSince(preprocessingStartTime)
+        inferenceStartTime = Date()
         let output = modelOutput.data.toArray(type: Float32.self)
         let dimensions = modelOutput.shape.dimensions
         let numKeyPoints = dimensions[2]
