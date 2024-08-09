@@ -31,7 +31,7 @@ public final class MovenetEngine {
 
     public func initialize(
         threadCount: Int = 2,
-        delegate: TFLDelegate = .cpu,
+        delegate: TFLDelegate = .auto,
         completion: @escaping (Bool) -> Void
     ) {
         queue.async { [weak self] in
@@ -96,7 +96,7 @@ public final class MovenetEngine {
             defer { self.isRunning.mutate({ $0 = false })}
 
             do {
-                let imageData = try self.preprocess(with: sampleBuffer)
+                let imageData = try self.preprocessWithOpenCV(with: sampleBuffer)
                 try inference(data: imageData)
             } catch {
                 completion(.failure(error))
@@ -154,7 +154,7 @@ public final class MovenetEngine {
 
 extension MovenetEngine {
 
-    private func preprocess(with sampleBuffer: CMSampleBuffer) throws -> Data {
+    func preprocessWithOpenCV(with sampleBuffer: CMSampleBuffer) throws -> Data {
         guard let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             throw PoseEstimationError.preprocessingFailed
         }
@@ -175,7 +175,7 @@ extension MovenetEngine {
         return result
     }
 
-    private func preprocess(_ pixelBuffer: CVPixelBuffer) -> Data? {
+    func preprocess(_ pixelBuffer: CVPixelBuffer) -> Data? {
         let sourcePixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
         assert(
             sourcePixelFormat == kCVPixelFormatType_32BGRA
@@ -186,9 +186,23 @@ extension MovenetEngine {
         let inputWidth = dimensions[1]
         let inputHeight = dimensions[2]
         let modelSize = CGSize(width: inputWidth, height: inputHeight)
-        guard let thumbnail = pixelBuffer.resized(to: modelSize) else { return nil }
-        // Remove the alpha component from the image buffer to get the initialized `Data`.
-        return thumbnail.rgbData(isModelQuantized: false, imageMean: .zero, imageStd: 1)
+
+        let originalWidth = CVPixelBufferGetWidth(pixelBuffer)
+        let originalHeight = CVPixelBufferGetHeight(pixelBuffer)
+
+        var paddedPixelBuffer: CVPixelBuffer? = nil
+        if originalWidth != originalHeight {
+            let longerSide = max(originalWidth, originalHeight)
+            let paddingWidth = (longerSide - originalWidth) / 2
+            let paddingHeight = (longerSide - originalHeight) / 2
+
+            paddedPixelBuffer = pixelBuffer.addPadding(paddingWidth: paddingWidth, paddingHeight: paddingHeight)
+        } else {
+            paddedPixelBuffer = pixelBuffer
+        }
+
+        guard let paddedBuffer = paddedPixelBuffer, let resizedPixelBuffer = paddedBuffer.resized(to: modelSize) else { return nil }
+        return resizedPixelBuffer.rgbData(isModelQuantized: false, imageMean: 0.0, imageStd: 1.0)
     }
 
     private func inference(data: Data) throws {

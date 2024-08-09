@@ -19,7 +19,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4C87BB12C611A15004301EF"
+               BlueprintIdentifier = "E4C3D95A2C64C60400AD7DF2"
                BuildableName = "MovenetOptimizationTests.xctest"
                BlueprintName = "MovenetOptimizationTests"
                ReferencedContainer = "container:MovenetOptimization.xcodeproj">
