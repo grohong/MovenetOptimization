@@ -10,16 +10,22 @@ import SwiftUI
 struct MovenetOptimizationScreen: View {
 
     @StateObject private var performanceMonitor = PerformanceMonitor()
+    @State var time: String
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            CameraViewRepresentable(isUseOpenCVPreprocessor: true)
+            CameraViewRepresentable(
+                isUseOpenCVPreprocessor: true,
+                updateTotalTime: { self.time = $0 }
+            )
                 .edgesIgnoringSafeArea(.all)
 
             VStack(alignment: .leading, spacing: 10) {
                 Text("CPU : \(String(format: "%.2f", performanceMonitor.cpuUsage))%")
                     .foregroundColor(.white)
                 Text("Memory : \(String(format: "%.1f", performanceMonitor.memoryUsage))MB")
+                    .foregroundColor(.white)
+                Text("time : \(time)")
                     .foregroundColor(.white)
             }
             .padding()

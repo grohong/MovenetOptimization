@@ -42,18 +42,12 @@ final class MovenetOptimizationTests: XCTestCase {
         }
     }
 
-    func testPreprocessWithOrigin() throws {
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            XCTFail("Failed to get CVPixelBuffer from CMSampleBuffer")
-            return
-        }
-
+    func testPreprocess() throws {
         measure {
-            let data = engine.preprocess(pixelBuffer)
+            let data = engine.preprocess(with: sampleBuffer)
             XCTAssertNotNil(data, "Preprocessed data should not be nil")
         }
     }
-
 }
 
 private extension MovenetOptimizationTests {
@@ -106,16 +100,5 @@ private extension MovenetOptimizationTests {
         } else {
             return nil
         }
-    }
-
-    func createPixelBuffer() -> CVPixelBuffer {
-        var pixelBuffer: CVPixelBuffer?
-        let attributes = [
-            kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_32BGRA,
-            kCVPixelBufferWidthKey: 1280,
-            kCVPixelBufferHeightKey: 720
-        ] as CFDictionary
-        CVPixelBufferCreate(kCFAllocatorDefault, 1280, 720, kCVPixelFormatType_32BGRA, attributes, &pixelBuffer)
-        return pixelBuffer!
     }
 }
